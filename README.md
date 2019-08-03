@@ -59,11 +59,30 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 2.解决右进左出，不挡到后边，这两个问题
 
 ## 改造新闻资讯路由连接
-1.a标签换成router-link，href换成to
+1.先从mui中复制新闻列表模板
+2.a标签换成router-link，href换成to
 
 ## 新闻资讯页面制作
 1.绘制界面：使用mui里的media-list.html
 2.使用vue-resource获取数据
 3.渲染真实数据
 4.格式化时间，先安装：npm i moment -S，再在main引入，定义格式，然后通过|调用格式
+
+## 实现新闻资讯列表点击后跳转到新闻详情
+1.把列表中的每一项改成router-link，同时，在跳转的时候应该提供唯一的id标识符
+2.创建新闻详情的组件页面，newsinfo.vue
+3.在router.js中将新闻详情的路由地址和组件页面对应起来
+
+## 单独封装一个comment.vue评论子组件（因为有很多个页面里都有评论这个功能）
+1.先创建一个单独的comment.vue
+2.在需要comment的页面手动导入comment
+3.在父组件中，使用components属性将刚才导进来的comment组件进行注册
+4.将注册子组件时候的注册名称以标签形式在页面中引入即可
+
+## 获取所有评论数据显示到首页中
+
+## 实现点击加载更多评论的功能
+1.为加载更多按钮，绑定点击事件，在实践中，请求 下一页数据
+2.点击加载更多，让pageIndex++，然后重新调用this.getComment()方法重亲获取最新一页的数据
+3.为了防止新数据覆盖老数据，我们在点击加载更多的时候，每当获取到新数据时，应该让老数据调用数组的concat方法，拼接上新数组
 
