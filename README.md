@@ -86,3 +86,33 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 2.点击加载更多，让pageIndex++，然后重新调用this.getComment()方法重亲获取最新一页的数据
 3.为了防止新数据覆盖老数据，我们在点击加载更多的时候，每当获取到新数据时，应该让老数据调用数组的concat方法，拼接上新数组
 
+## 发表评论
+1.把文本框做双向数据绑定
+2.为发表评论按钮绑定点击事件
+3，判断评论内容是否为空，如果为空则toast提示用户
+4.通过vue-resource发送一个请求，把评论内容提交给服务器
+5.当发表评论后，重新刷新列表，以查看最新评论
+    如果调用getComments方法重新刷新评论列表的话，可能只能得到最后一页的评论，前几页的评论获取不到
+    换一种思路，当评论成功后，在客户端，手动拼接出一个最新的评论对象，然后调用数组的unshift方法，把最新的评论，追加到data中comments的开头；这样就能完美实现刷新评论列表的请求
+
+## 改造图片分析 按钮为 路由连接并显示对应的组件页面
+
+## 绘制 图片列表组件页面结构并美化样式
+1.制作顶部的滑动条
+2.制作底部的图片列表
+
+## 制作photolist顶部滑动条的坑：
+1.需要借助于mui中的tab-top-webview-main.html
+2.需要把slider区域的mul-fullscreen类去掉，防止沾满全屏
+3.滑动条无法正常滑动，通过检查官方文档发现这个是一个js组件，需要初始化一下“
+    导入mui.js
+    调用官方提供的方式去初始化：
+    mui('.mui-scroll-wrapper').scroll({
+	deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+});
+4.我们在初始化滑动条的时候导入了mui.js，但是报错了Uncaught TypeError: 'caller', 'callee', and 'arguments' properties may not be accessed on strict mode functions
+    经过合理地推测，可能是mui.js中用到了'caller', 'callee', and 'arguments'，但是，webpack打包好的bundle.js中，默认是启用严格模式的，所以这两者冲突了
+    解决方案：1.把mui.js中的非严格模式的代码改掉，但是不现实
+             2.把webpack打包时的严格模式给禁用:
+               第一步 npm i babel-plugin-transform-remove-strict-mode
+               

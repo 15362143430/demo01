@@ -3,7 +3,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import './lib/mui/css/mui.min.css' //复制mui到lib(新建)里后再引入，这是mui样式表
 import './lib/mui/css/icons-extra.css'//font里需添加依赖文件才行
-//import './lib/mui/js/mui'//这是mui的js文件
+import mui from './lib/mui/js/mui'//1.这是mui的js文件
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
