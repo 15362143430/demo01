@@ -50,7 +50,8 @@ export default {
 <style scoped>
 .appBox{
   padding-top: 40px;
-  overflow-x: hidden;
+  padding-bottom: 50px;
+   overflow-x: hidden; 
 }
 
 .v-enter{

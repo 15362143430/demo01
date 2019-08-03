@@ -15,6 +15,12 @@ import MintUI from 'mint-ui'//得先下载后再引入
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
 Vue.config.productionTip = false
+import moment from 'moment'//导入格式化时间的插件
+Vue.filter('dataFormat',function(dataStr,pattern="YYYY-MM-DD HH:mm:ss"){
+  return moment(dataStr).format(pattern)
+})
+
+
 
 console.log('ok')
 

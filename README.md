@@ -54,6 +54,16 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 3.获取到的数据要保存到this.daita 的身上
 4.使用v-for循环渲染每个item项
 
-## 组件切换动画的设置
+## 底部组件切换动画的设置
 1.设置进出的样式
-2.解决右进左出，不挡到后边，这两个问题# demo01
+2.解决右进左出，不挡到后边，这两个问题
+
+## 改造新闻资讯路由连接
+1.a标签换成router-link，href换成to
+
+## 新闻资讯页面制作
+1.绘制界面：使用mui里的media-list.html
+2.使用vue-resource获取数据
+3.渲染真实数据
+4.格式化时间，先安装：npm i moment -S，再在main引入，定义格式，然后通过|调用格式
+
