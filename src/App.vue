@@ -1,7 +1,7 @@
 <template>
   <div class="appBox">
     <!-- 这是头部啊啊啊 -->
-   <mt-header fixed title="我是头部哦"></mt-header>
+   <mt-header fixed title="我是头部嘻嘻"></mt-header>
 
    <!-- 这是中间部分啊 -->
    <transition>
