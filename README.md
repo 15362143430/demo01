@@ -73,20 +73,20 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 2.创建新闻详情的组件页面，newsinfo.vue
 3.在router.js中将新闻详情的路由地址和组件页面对应起来
 
-## 单独封装一个comment.vue评论子组件（因为有很多个页面里都有评论这个功能）
+## 单独封装一个comment.vue评论子组件（因为有很多个页面里都有评论这个功能）(没完成)
 1.先创建一个单独的comment.vue
 2.在需要comment的页面手动导入comment
 3.在父组件中，使用components属性将刚才导进来的comment组件进行注册
 4.将注册子组件时候的注册名称以标签形式在页面中引入即可
 
-## 获取所有评论数据显示到首页中
+## 获取所有评论数据显示到首页中(没完成)
 
-## 实现点击加载更多评论的功能
+## 实现点击加载更多评论的功能(没完成)
 1.为加载更多按钮，绑定点击事件，在实践中，请求 下一页数据
 2.点击加载更多，让pageIndex++，然后重新调用this.getComment()方法重亲获取最新一页的数据
 3.为了防止新数据覆盖老数据，我们在点击加载更多的时候，每当获取到新数据时，应该让老数据调用数组的concat方法，拼接上新数组
 
-## 发表评论
+## 发表评论(没完成)
 1.把文本框做双向数据绑定
 2.为发表评论按钮绑定点击事件
 3，判断评论内容是否为空，如果为空则toast提示用户
@@ -115,4 +115,32 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     解决方案：1.把mui.js中的非严格模式的代码改掉，但是不现实
              2.把webpack打包时的严格模式给禁用:
                第一步 npm i babel-plugin-transform-remove-strict-mode
+               第二步 在.babelrc里加上：
+                            "ignore": [
+                            "./src/lib/mui/js/mui",
+                                        ]
+5.获取所有分类，并渲染分类列表
+    1.滑动上方图片导航的时候会报错：Unable to preventDefault inside passive event listener due to target being treated as passive. See，解决方案是在photolist的css里加上*{touch-action:pan-y}
+    2.从首页进入图片专区后上方图片导航滑动不了，解决方案： mounted() {//所有dom都被                                                                  执行才执行
+                                    mui(".mui-scroll-wrapper").scroll({
+                                    deceleration: 0.0005 //2.flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
+                                    });
+                                                           }
+    3.下方的tabbar点不了。原因：tabbar里的mui-tab-item这个类发生了冲突，解决方法：复制所有有关mui-tab-item的样式，赋值给自创的mui-tab-item-tabbar
+
+## 制作图片列表区域
+1.图片列表需要使用懒加载技术，我们可以使用mintui提供的县城的组件“lazy-load”
+2.渲染图片列表数据
+##实现图片详情中的缩略图功能(没完成)
+1.使用插件vue-preview这个缩略图插件
+2.获取到所有额图片列表，然后使用v-for渲染数据
+3.注意：img标签上的class不能去掉
+4.注意：每个图片数据对象中，必须有w和h属性
+
+##绘制商品列表页面基本结构并美化
+
+##尝试在手机上去进行项目的预览和测试
+1.保证自己的手机可以正常运行
+2.要保证手机和电脑在同一个局域网
+3.打开自己项目的package.json，在dev脚本中，添加一个host指令，把当前电脑的ip地址，设置成--host指令值；
                

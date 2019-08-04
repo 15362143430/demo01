@@ -17,7 +17,7 @@
 		                    <span class="mui-icon mui-icon-email"></span>
 		                    <div class="mui-media-body">图片分享</div></router-link></li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                  <router-link to="#">
+                  <router-link to="/home/goodslist">
 		                    <span class="mui-icon mui-icon-chatbubble"></span>
 		                    <div class="mui-media-body">商品购买</div></router-link></li>
 		            <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
