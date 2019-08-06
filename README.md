@@ -143,4 +143,24 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 1.保证自己的手机可以正常运行
 2.要保证手机和电脑在同一个局域网
 3.打开自己项目的package.json，在dev脚本中，添加一个host指令，把当前电脑的ip地址，设置成--host指令值；
+
+## 小球优化思路（兼容各种机型）
+1.先分析导致动画不准确的本质原因：我们把小球最终位移位置，已经局部定在了某一机型线上的滚动条未滚动的情况下
+2.只要机型和测试的时候不一样，或者滚动条有一定的滚动距离之后，问题就出现了；
+3.因此，我们经过分析，得出结论：不能把位置的横纵坐标直接写死，应该是根据不同的机型，动态计算这个坐标值
+4.方法：先得到徽标的横纵坐标，再得到小球的横纵坐标，然后让x，y都相减，得到的结果就是要位移的横纵距离
+5如何获取坐标？ domObject.getBoundingClientRect()
+
+## 实现加入购物车的时候，拿到选择的数量（重中之重）
+1.经过分析发现，按钮属于goodsinfo，数字属于goodsinfo-numbox
+2.由于涉及到父子组件的嵌套，所以无法直接在goodsinfo页面中获取到选中商品的数量
+3.怎么解决这个问题：涉及到了子组件向父组件传值（事件调用机制）
+4.事件调用的本质：父向子传递方法，子调用这个方法，同时把数据当做参数传递给这个方法
+    在goodsinfo上的numbox标签绑定事件：@getCount="getGoodsCount"，并在定义getGoodsCount函数
+    在goodsinfo-numbox上的input上绑定@change事件，再用this.$emit("getCount", parseInt(this.$refs.numbox.value))，把value(就是商品数量)作为参数传给父组件的getGoodsCount函数
+
+## 设置numbox的最大值
+1.父组件向子组件传值
+2.直接传值导致最大值为undefined，因为传过去的时候还没ajax获取到api里的值
+    
                

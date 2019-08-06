@@ -1,6 +1,11 @@
 <template>
   <div class="goods-box">
-    <div class="goods-phone" v-for="item in Goods" :key="item.id">
+    <router-link
+      class="goods-phone"
+      v-for="item in Goods"
+      :key="item.id"
+      :to="'/home/goodsinfo/'+item.id"
+    >
       <img :src="item.img_url" alt />
       <h4 class="goods-name">{{item.title}}</h4>
       <div class="goods-p">
@@ -13,7 +18,7 @@
           <span>库存：{{item.stock_quantity}}</span>
         </p>
       </div>
-    </div>
+    </router-link>
     <mt-button type="danger" size="large" @click="getMoreGoods">加载更多</mt-button>
   </div>
 </template>
@@ -23,7 +28,7 @@ export default {
   data() {
     return {
       Goods: [],
-      pageindex:1
+      pageindex: 1
     };
   },
   created() {
@@ -32,7 +37,10 @@ export default {
   methods: {
     getGoods() {
       this.$http
-        .get("http://www.liulongbin.top:3005/api/getgoods?pageindex="+this.pageindex)
+        .get(
+          "http://www.liulongbin.top:3005/api/getgoods?pageindex=" +
+            this.pageindex
+        )
         .then(result => {
           console.log(result.body);
           if (result.body.status == 0) {
@@ -42,10 +50,14 @@ export default {
           }
         });
     },
-    getMoreGoods(){//点击加载更多把新的数组拼接到旧数组上，而不是覆盖
-        this.pageindex++;
-        this.$http
-        .get("http://www.liulongbin.top:3005/api/getgoods?pageindex="+this.pageindex)
+    getMoreGoods() {
+      //点击加载更多把新的数组拼接到旧数组上，而不是覆盖
+      this.pageindex++;
+      this.$http
+        .get(
+          "http://www.liulongbin.top:3005/api/getgoods?pageindex=" +
+            this.pageindex
+        )
         .then(result => {
           console.log(result.body);
           if (result.body.status == 0) {
@@ -70,6 +82,9 @@ export default {
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 0 1%;
+}
+.goods-box .goods-phone .goods-name{
+  color: black;
 }
 .goods-box .goods-phone {
   margin: 5px 0;

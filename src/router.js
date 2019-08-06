@@ -9,6 +9,9 @@ import newslist from './components/news/newslist.vue'
 import newsinfo from './components/news/newsinfo.vue'
 import photolist from './components/photo/photolist.vue'
 import goodslist from './components/goods/goodslist.vue'
+import goodsinfo from './components/goods/goodsinfo.vue'
+import goodsxiangqing from './components/goods/goodsxiangqing.vue'
+import goodscomment from './components/goods/goodscomment.vue'
 
 var router=new VueRouter({
   routes:[
@@ -20,7 +23,11 @@ var router=new VueRouter({
     { path: '/home/newslist', component: newslist },
     { path: '/home/newsinfo/:id', component: newsinfo },
     { path: '/home/photolist', component: photolist },
-    { path: '/home/goodslist', component: goodslist }
+    { path: '/home/goodslist', component: goodslist },
+    { path: '/home/goodsinfo/:id', component: goodsinfo},
+    //点击式编程式跳转配置
+    { path: '/home/goodsxiangqing/:id', component: goodsxiangqing, name:"goodsxiangqing" },
+    { path: '/home/goodscomment/:id', component: goodscomment, name: "goodscomment" }
   ],
   linkActiveClass:"mui-active"//覆盖默认高亮的类
 })

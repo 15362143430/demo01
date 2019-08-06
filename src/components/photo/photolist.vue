@@ -13,7 +13,7 @@
             @tap="getCatePhoto(item.id)"
             class="mui-control-item mui-active"
             data-wid="tab-top-subpage-1.html"
-          >{{item.title}}</a>//tap只能在mui里用，比click效果好
+          >{{item.title}}</a><!--tap只能在mui里用，比click效果好-->
         </div>
       </div>
     </div>
