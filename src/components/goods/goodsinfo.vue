@@ -4,7 +4,7 @@
     @before-enter="beforeEnter"
     @enter="enter"
     @after-enter="afterEnter">
-    <div class="ball" v-show="flag" ref="ball" :max="goodsMsg[0].stock_quantity"></div>
+    <div class="ball" v-show="flag" ref="ball"></div>
     </transition>
     <div class="mui-card">
       <div class="mui-card-content">
@@ -29,7 +29,7 @@
             </span>
           </p>
           <!-- 给numbox绑定一个事件 -->
-          <p>购买数量:<numbox @getCount="getGoodsCount"></numbox></p>
+          <p>购买数量:<numbox @getCount="getGoodsCount" :max="goodsMsg[0].stock_quantity"></numbox></p>
           
           <mt-button type="primary">立即购买</mt-button>
           <mt-button type="danger" @click="addtoShopCar">加入购物车</mt-button>
@@ -65,6 +65,7 @@ export default {
       goodsMsg:[],
       flag:false,
       goodsCount:1//商品默认数量是1
+
     };
   },
   created() {
@@ -112,6 +113,13 @@ export default {
     },
     addtoShopCar(){
       this.flag=!this.flag;
+      var goodsinfolist={
+        id:this.id,//这件商品的id
+        count:this.goodsCount,
+        price:this.goodsMsg[0].sell_price,//商品的单价
+        selected:true//商品是否选中
+      };
+      this.$store.commit("addToCar",goodsinfolist)//向vuex传值
     },
     beforeEnter(el){
       el.style.transform="translate(0,0)"

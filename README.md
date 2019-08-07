@@ -159,8 +159,19 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
     在goodsinfo上的numbox标签绑定事件：@getCount="getGoodsCount"，并在定义getGoodsCount函数
     在goodsinfo-numbox上的input上绑定@change事件，再用this.$emit("getCount", parseInt(this.$refs.numbox.value))，把value(就是商品数量)作为参数传给父组件的getGoodsCount函数
 
-## 设置numbox的最大值
+## 设置numbox的最大值(未完成)
 1.父组件向子组件传值
 2.直接传值导致最大值为undefined，因为传过去的时候还没ajax获取到api里的值
-    
+
+## Vuex(是一个全局共享数据的存储区域，就相当于是一个仓库) 安装npm i vuex -S
+Vuex是为了保存组件之间共享数据而诞生的，如果组件之间有要共享的数据，可以直接挂在到vuex中，而不必通过父子组件之间传值了，如果组件数据不需要共享，此时，这些不需要共享的私有数据，没有必要放在vuex中：
+            只有共享的数据，才有权利放到vuex中；
+            组件内部私有数据，只需要放在组件自己的data里即可
+            props 和data和vuex的区别；
+
+
+## shopcar的制作
+1.获取到store中car数组中所有商品的id，然后拼接出一个用逗号分隔的字符串(api接口要用到)
+2.如何从后无车中获取商品的数量
+        我们可以先创建一个空对象，然后循环购物车中所有商品的数据，把当前循环这条商品的id，作为对象的属性名，count作为属性值，当把所有的商品循环一遍，就会得到一个对象：{88:2,89:1,90:2}    
                
